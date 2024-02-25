@@ -10,6 +10,10 @@ public class Item_Blocker extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
+
         configManager = new ConfigurationManager(this);
         ItemPickupListener listener = new ItemPickupListener(configManager);
         getServer().getPluginManager().registerEvents(listener, this);
