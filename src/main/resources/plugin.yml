@@ -3,3 +3,7 @@ version: '${project.version}'
 main: me.levoxe.itemblocker.Item_Blocker
 api-version: '1.19'
 authors: [Mevune]
+commands:
+  itemblocker:
+    description: Main command
+    usage: /<command>

@@ -3,9 +3,11 @@
 # List of items that are blocked
 blockedItems:
   - GOLDEN_APPLE
+  - END_CRYSTAL
 
 # Permissions required to pick up blocked items
 permissions:
   GOLDEN_APPLE: "itemblocker.pickup.goldenapple"
+  END_CRYSTAL: "itemblocker.pickup.endcrystal"
 
-no-permission-message: "&cYou don't have permission to pick up this item!"
+no-permission: "&cYou don't have permission to pick up this item!"

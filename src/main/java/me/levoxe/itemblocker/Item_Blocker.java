@@ -10,13 +10,9 @@ public class Item_Blocker extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
-        getConfig().options().copyDefaults();
-        saveDefaultConfig();
-
         configManager = new ConfigurationManager(this);
-        ItemPickupListener listener = new ItemPickupListener(configManager);
-        getServer().getPluginManager().registerEvents(listener, this);
+        // Pass the plugin instance and configuration manager to the ItemPickupListener constructor
+        getServer().getPluginManager().registerEvents(new ItemPickupListener(this, configManager), this);
         getLogger().info("Item_Blocker has been enabled!");
     }
 
