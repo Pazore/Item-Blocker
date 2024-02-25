@@ -1,29 +1,27 @@
 package me.levoxe.itemblocker;
 
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.Plugin;
 
 public class ConfigurationManager {
 
-    private Plugin plugin;
-    private FileConfiguration config;
+    private final FileConfiguration config;
 
-    public ConfigurationManager(Plugin plugin) {
-        this.plugin = plugin;
-        this.config = plugin.getConfig();
-        config.options().copyDefaults(true);
-        saveConfig();
+    public ConfigurationManager(FileConfiguration config) {
+        this.config = config;
     }
 
-    public boolean isItemBlocked(String itemType) {
-        return config.getStringList("blockedItems").contains(itemType);
+    // Method to check if an item is blocked
+    public boolean isItemBlocked(String itemName) {
+        return config.getStringList("blockedItems").contains(itemName);
     }
 
-    public String getItemPermission(String itemType) {
-        return config.getString("permissions." + itemType);
+    // Method to get the permission required for an item
+    public String getItemPermission(String itemName) {
+        return config.getString("permissions." + itemName);
     }
 
-    private void saveConfig() {
-        plugin.saveConfig();
+    // Method to get the no-permission message from the config
+    public String getNoPermissionMessage() {
+        return config.getString("no-permission");
     }
 }

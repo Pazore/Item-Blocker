@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 public class ConfigReload implements CommandExecutor {
 
-    static Item_Blocker plugin;
+    private final Item_Blocker plugin;
 
     public ConfigReload(Item_Blocker plugin) {
         this.plugin = plugin;
@@ -16,7 +16,6 @@ public class ConfigReload implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
         if (!(sender instanceof Player)) {
             sender.sendMessage(ChatColor.RED + "Only players can execute this command!");
             return true;
@@ -25,16 +24,22 @@ public class ConfigReload implements CommandExecutor {
         Player p = (Player) sender;
 
         if (!p.hasPermission("itemblocker.reload")) {
-            p.sendMessage(ChatColor.RED + "You cannot run this command!");
+            p.sendMessage(ChatColor.RED + "You do not have permission to run this command!");
             return true;
         } else {
-        }
             if (args.length == 0){
                 p.sendMessage(ChatColor.RED + "Error: /itemblocker reload");
             } else if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-                p.sendMessage(ChatColor.GREEN + "Item-Blocker By Mevune Reloaded!");
+                p.sendMessage(ChatColor.GREEN + "Item-Blocker by Mevune has been reloaded!");
             }
-            plugin.reloadConfig();
+        }
+
+        plugin.reloadConfig();
+
+        ConfigurationManager configManager = new ConfigurationManager(plugin.getConfig());
+        plugin.getItemPickupListener().setConfigManager(configManager);
+
+        p.sendMessage(ChatColor.GREEN + "Item-Blocker configuration reloaded!");
 
         return true;
     }

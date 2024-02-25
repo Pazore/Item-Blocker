@@ -8,9 +8,8 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ItemPickupListener implements Listener {
-
-    private final ConfigurationManager configManager;
     private final JavaPlugin plugin;
+    private ConfigurationManager configManager;
 
     public ItemPickupListener(JavaPlugin plugin, ConfigurationManager configManager) {
         this.plugin = plugin;
@@ -24,8 +23,12 @@ public class ItemPickupListener implements Listener {
             String itemType = event.getItem().getItemStack().getType().name();
             if (!player.hasPermission(configManager.getItemPermission(itemType))) {
                 event.setCancelled(true);
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("no-permission")));
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', configManager.getNoPermissionMessage()));
             }
         }
+    }
+
+    public void setConfigManager(ConfigurationManager configManager) {
+        this.configManager = configManager;
     }
 }
