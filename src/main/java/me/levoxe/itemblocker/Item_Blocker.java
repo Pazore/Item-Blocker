@@ -16,7 +16,7 @@ public class Item_Blocker extends JavaPlugin {
         saveDefaultConfig();
 
         configManager = new ConfigurationManager(config);
-        itemPickupListener = new ItemPickupListener(this, configManager); // Pass 'this' as the first argument
+        itemPickupListener = new ItemPickupListener(this, configManager);
         getServer().getPluginManager().registerEvents(itemPickupListener, this);
         getCommand("itemblocker").setExecutor(new ConfigReload(this));
         getLogger().info("Item_Blocker has been enabled!");

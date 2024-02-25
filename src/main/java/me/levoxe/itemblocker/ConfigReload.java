@@ -39,8 +39,6 @@ public class ConfigReload implements CommandExecutor {
         ConfigurationManager configManager = new ConfigurationManager(plugin.getConfig());
         plugin.getItemPickupListener().setConfigManager(configManager);
 
-        p.sendMessage(ChatColor.GREEN + "Item-Blocker configuration reloaded!");
-
         return true;
     }
 }
