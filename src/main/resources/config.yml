@@ -1,0 +1,11 @@
+# ItemBlocker Configuration
+
+# List of items that are blocked
+blockedItems:
+  - GOLDEN_APPLE
+
+# Permissions required to pick up blocked items
+permissions:
+  GOLDEN_APPLE: "itemblocker.pickup.goldenapple"
+
+no-permission-message: "&cYou don't have permission to pick up this item!"
